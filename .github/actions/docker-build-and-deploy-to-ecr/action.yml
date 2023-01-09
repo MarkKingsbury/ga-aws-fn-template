@@ -65,7 +65,6 @@ runs:
 #
 #        echo "SHA256 of PIP_INDEX_URL environment variable follows:"
 #        echo "${PIP_INDEX_URL}" | shasum -a 256
-
         docker images
         docker build \
 #          --build-arg PIP_INDEX_URL \
