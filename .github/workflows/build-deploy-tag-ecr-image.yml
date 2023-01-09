@@ -3,6 +3,7 @@ on:
   workflow_dispatch:
 permissions:
   id-token: write  # required by aws-actions/configure-aws-credentials
+  #  contents: write  # to push new git tag
 jobs:
   ecr-deploy:
     uses: ./.github/workflows/docker-build-and-ecr-deploy.yml
