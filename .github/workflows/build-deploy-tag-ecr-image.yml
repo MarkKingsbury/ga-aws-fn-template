@@ -1,6 +1,8 @@
 name: IMAGE-DEPLOY
 on:
   workflow_dispatch:
+permissions:
+  id-token: write  # required by aws-actions/configure-aws-credentials
 jobs:
   ecr-deploy:
     uses: ./.github/workflows/docker-build-and-ecr-deploy.yml
