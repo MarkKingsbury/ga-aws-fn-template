@@ -11,5 +11,5 @@ jobs:
       build_dir: 'item-to-row'
       ecr_registry_path: 'mk-fn'
     secrets:
-      AWS_OPEN_ID_CONNECT_ROLE_ARN: ${{ secrets.AWS_OPEN_ID_CONNECT_ROLE_ARN }}
+      ROLE_ARN: ${{ secrets.ROLE_ARN }}
       AWS_REGION: ${{ secrets.AWS_REGION }}
