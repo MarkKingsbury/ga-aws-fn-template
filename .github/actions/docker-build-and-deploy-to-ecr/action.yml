@@ -43,7 +43,7 @@ runs:
         REGISTRY: ${{ steps.aws-ecr-login.outputs.registry }}
         REGISTRY_PATH: ${{ inputs.ecr-registry-path }}
         IMAGE_NAME: ${{ inputs.image-name }}
-        IMAGE_TAG: ${{ inputs.image-version }}
+        IMAGE_TAG: test
         ECR_REPOSITORY_NAME: ${{ inputs.ecr-registry-path }}/${{ inputs.image-name }}
       run: |
         # Create ECR repository if it doesn't exist
