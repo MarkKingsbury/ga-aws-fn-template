@@ -39,7 +39,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Get the version to use to tag this build
         id: build-tag
-        uses: nationalarchives/tre-github-actions/.github/actions/get-next-version@0.0.1
+        uses: ./.github/actions/get-next-version
         with:
           repo-name: ${{ github.event.repository.name }}
       - name: Diagnostic info
