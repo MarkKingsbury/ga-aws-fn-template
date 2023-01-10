@@ -37,14 +37,14 @@ jobs:
           printf 'inputs.python_version=%s\n' "${{ inputs.python_version }}"
       - name: Checkout current
         uses: actions/checkout@v3
-#      - name: Get the version to use to tag this build
-#        id: build-tag
-#        uses: nationalarchives/tre-github-actions/.github/actions/get-next-version@0.0.1
-#        with:
-#          repo-name: ${{ github.event.repository.name }}
-#      - name: Diagnostic info
-#        run: |
-#          printf 'steps.build-tag.outputs.next-version=%s\n' "${{ steps.build-tag.outputs.next-version }}"
+      - name: Get the version to use to tag this build
+        id: build-tag
+        uses: nationalarchives/tre-github-actions/.github/actions/get-next-version@0.0.1
+        with:
+          repo-name: ${{ github.event.repository.name }}
+      - name: Diagnostic info
+        run: |
+          printf 'steps.build-tag.outputs.next-version=%s\n' "${{ steps.build-tag.outputs.next-version }}"
       - name: AWS credential setup
         uses: aws-actions/configure-aws-credentials@v1
         with:
