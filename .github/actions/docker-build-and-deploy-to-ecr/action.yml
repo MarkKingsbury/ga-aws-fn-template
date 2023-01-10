@@ -27,7 +27,7 @@ runs:
         REGISTRY: ${{ steps.aws-ecr-login.outputs.registry }}
         REGISTRY_PATH: ${{ inputs.ecr-registry-path }}
         IMAGE_NAME: ${{ inputs.image-name }}
-        IMAGE_VERSION: 0.0.1
+        IMAGE_VERSION: test
         ECR_REPOSITORY_NAME: ${{ inputs.ecr-registry-path }}/${{ inputs.image-name }}
       run: |
         echo "Local file listing follows:"
