@@ -37,3 +37,28 @@ runs:
           --tag "${REGISTRY}/${REGISTRY_PATH}/${IMAGE_NAME}:${IMAGE_VERSION}" \
           "${{ inputs.dockerfile-dir }}"
         docker images
+    - name: 'AWS ECR docker push'
+      shell: bash
+      env:
+        REGISTRY: ${{ steps.aws-ecr-login.outputs.registry }}
+        REGISTRY_PATH: ${{ inputs.ecr-registry-path }}
+        IMAGE_NAME: ${{ inputs.image-name }}
+        IMAGE_TAG: ${{ inputs.image-version }}
+        ECR_REPOSITORY_NAME: ${{ inputs.ecr-registry-path }}/${{ inputs.image-name }}
+      run: |
+        # Create ECR repository if it doesn't exist
+        if [[ $(aws ecr describe-repositories \
+          --region "${{ inputs.aws-region }}" \
+          --repository-names "${ECR_REPOSITORY_NAME}" \
+        ) ]]; then
+          printf 'Repository "%s" already exists' "${ECR_REPOSITORY_NAME}"
+        else
+          printf 'Creating repository "%s"' "${ECR_REPOSITORY_NAME}"
+          aws ecr create-repository \
+            --region "${{ inputs.aws-region }}" \
+            --repository-name "${ECR_REPOSITORY_NAME}" \
+            --image-scanning-configuration \
+            scanOnPush=true
+        fi
+
+        docker push "${REGISTRY}/${REGISTRY_PATH}/${IMAGE_NAME}:${IMAGE_TAG}"
