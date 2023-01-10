@@ -9,6 +9,9 @@ inputs:
   image-name:
     description: 'The name of the Docker image to push; e.g. "some-image"'
     required: true
+  image-version:
+    description: 'The version of the Docker image to push; e.g. "1.2.3"'
+    required: true
   ecr-registry-path:
     description: 'The path part of the repository name; i.e. the "alpha" in "alpha/docker-image-name"'
     required: true
@@ -27,7 +30,7 @@ runs:
         REGISTRY: ${{ steps.aws-ecr-login.outputs.registry }}
         REGISTRY_PATH: ${{ inputs.ecr-registry-path }}
         IMAGE_NAME: ${{ inputs.image-name }}
-        IMAGE_VERSION: test
+        IMAGE_VERSION: ${{ inputs.image-version }}
         ECR_REPOSITORY_NAME: ${{ inputs.ecr-registry-path }}/${{ inputs.image-name }}
       run: |
         echo "Local file listing follows:"
@@ -43,7 +46,7 @@ runs:
         REGISTRY: ${{ steps.aws-ecr-login.outputs.registry }}
         REGISTRY_PATH: ${{ inputs.ecr-registry-path }}
         IMAGE_NAME: ${{ inputs.image-name }}
-        IMAGE_TAG: test
+        IMAGE_TAG: ${{ inputs.image-version }}
         ECR_REPOSITORY_NAME: ${{ inputs.ecr-registry-path }}/${{ inputs.image-name }}
       run: |
         # Create ECR repository if it doesn't exist

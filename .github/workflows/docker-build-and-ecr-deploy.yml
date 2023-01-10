@@ -57,6 +57,7 @@ jobs:
         with:
           dockerfile-dir: ${{ inputs.build_dir }}
           image-name: ${{ inputs.docker_image_name }}
+          image-version: 0.0.1
 #          image-version: ${{ steps.build-tag.outputs.next-version }}
           ecr-registry-path: ${{ inputs.ecr_registry_path }}
           aws-region: ${{ secrets.AWS_REGION }}
